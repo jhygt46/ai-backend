@@ -3,6 +3,9 @@ Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
+node_modules/
+config.json
+
 # Folder config file
 Desktop.ini
 
