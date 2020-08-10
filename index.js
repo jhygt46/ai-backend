@@ -2,6 +2,11 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+io.on('connection', function(){ console.log("SERVER START"); });
+http.listen(80);
+
+/*
+
 const fs = require("fs");
 
 var bodyParser = require('body-parser');
@@ -30,3 +35,5 @@ app.get('/', urlencodedParser, function(req, res){
     res.end("Listo");
     
 });
+
+*/
