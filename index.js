@@ -11,7 +11,7 @@ http.listen(config.port, () => {
     console.log("El servidor está inicializado en el puerto "+config.port);
 });
 
-http.get('/', function(req, res){
+app.get('/', function(req, res){
 
     var correo = "buena@nelson.com";
     io.emit('nuevo_correo', correo);
