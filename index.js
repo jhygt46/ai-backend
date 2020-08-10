@@ -23,9 +23,10 @@ app.listen(config.port, () => {
 
 app.get('/', urlencodedParser, function(req, res){
 
-    res.setHeader('Content-Type', 'text/plain');
-    res.end("Listo");
     var correo = "buena@nelson.com";
     io.emit('nuevo_correo', correo);
+
+    res.setHeader('Content-Type', 'text/plain');
+    res.end("Listo");
     
 });
