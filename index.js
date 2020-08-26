@@ -4,22 +4,22 @@ var io = require('socket.io')(http);
 
 io.on('connection', function(){ console.log("SERVER START"); });
 
-const fs = require("fs");
-var config = JSON.parse(fs.readFileSync('./config.json'));
-
-http.listen(config.port, () => {
-    console.log("El servidor está inicializado en el puerto "+config.port);
+var helpers = require('./helpers');
+http.listen(helpers.getPort(), () => {
+    console.log("El servidor está inicializado en el puerto "+helpers.getPort());
 });
 
 app.get('/', function(req, res){
 
     var correo = "buena@nelson.com";
-    io.emit('nuevo_correo', correo);
+    io.emit('cambiar_preciorffffffffffffffffv', correo);
 
     res.setHeader('Content-Type', 'text/plain');
     res.end("Listo");
     
 });
+
+
 
 /*
 
