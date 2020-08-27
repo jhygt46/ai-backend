@@ -2,21 +2,15 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var CircularJSON = require('circular-json');
+
+var socket_list = {};
 
 io.on('connection', function(socket){
 
-    console.log('a user connected: ' + socket.id);
+    socket_list[socket.id] = socket.handshake.address.split(":")[3] || socket.request.connection.remoteAddress.split(":")[3];
     socket.on('disconnect', function(){
-        console.log( socket.name + ' has disconnected from the chat.' + socket.id);
+        delete socket_list[socket.id]; 
     });
-    socket.on('join', function (name) {
-        socket.name = name;
-        console.log(socket.name + ' joined the chat.');
-    });
-
-    //var ip = socket.handshake.address.split(":")[3] || socket.request.connection.remoteAddress.split(":")[3];
-    //console.log(ip);
 
 });
 
@@ -33,10 +27,7 @@ app.get('/', function(req, res){
     var correo = "buena@nelson.com";
     io.emit('cambiar_precio', correo);
 
-    fs.readFile("socket.json","utf8" ,function(err, contents){
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.write(contents);
-        res.end();
-    });
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(socket_list));
     
 });
