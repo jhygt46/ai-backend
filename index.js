@@ -9,7 +9,7 @@ var helpers = require('./helpers');
 var config = JSON.parse(fs.readFileSync('./config.json'));
 
 http.listen(config.port, () => {
-    fs.appendFile('init.log', 'Servidor iniciado a las ' + new Date().toLocaleString() + ' en puerto ' + config.port + '\n', function(err){ if(err) return console.log(err) });
+    fs.appendFile('init.log', 'Servidor iniciado a las ' + new Date().toLocaleString() + ' en puerto ' + config.port + '\n', function(err){ if(err) return console.log(err); console.log("SERVER START") });
 });
 
 app.get('/', function(req, res){
