@@ -5,8 +5,10 @@ var io = require('socket.io')(http);
 var CircularJSON = require('circular-json');
 
 io.on('connection', function(a){ 
-    console.log("CONECTION START"); 
-    fs.appendFile('socket.json', CircularJSON.stringify(a), function(err){ if(err) return console.log(err) });
+    console.log("CONECTION START");
+    var address = socket.handshake.address;
+    console.log(address);
+    //fs.appendFile('socket.json', CircularJSON.stringify(a), function(err){ if(err) return console.log(err) });
 });
 
 var fs = require('fs');
