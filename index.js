@@ -10,7 +10,7 @@ io.on('connection', function(socket){
     
     console.log(socket.handshake);
     console.log(socket.request.connection);
-}
+    
     var ip = socket.handshake.address.split(":")[3] || socket.request.connection.remoteAddress.split(":")[3];
     console.log(ip);
 
