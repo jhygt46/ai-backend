@@ -4,12 +4,16 @@ var io = require('socket.io')(http);
 
 var CircularJSON = require('circular-json');
 
-io.on('connection', function(socket){ 
+io.on('connection', function(socket){
+
     console.log("CONECTION START");
-    console.log(socket.handshake.headers.host);
-    console.log(socket.handshake.address);
-    console.log(socket.request.connection.remoteAddress);
-    //fs.appendFile('socket.json', CircularJSON.stringify(a), function(err){ if(err) return console.log(err) });
+    
+    console.log(socket.handshake);
+    console.log(socket.request.connection);
+}
+    var ip = socket.handshake.address.split(":")[3] || socket.request.connection.remoteAddress.split(":")[3];
+    console.log(ip);
+
 });
 
 var fs = require('fs');
