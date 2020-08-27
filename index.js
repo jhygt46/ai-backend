@@ -6,8 +6,9 @@ var CircularJSON = require('circular-json');
 
 io.on('connection', function(socket){ 
     console.log("CONECTION START");
-    var address = socket.handshake.address;
-    console.log('New connection from ' + address.address + ':' + address.port);
+    console.log(socket.handshake.headers.host);
+    console.log(socket.handshake.address);
+    console.log(socket.request.connection.remoteAddress);
     //fs.appendFile('socket.json', CircularJSON.stringify(a), function(err){ if(err) return console.log(err) });
 });
 
