@@ -6,13 +6,17 @@ var CircularJSON = require('circular-json');
 
 io.on('connection', function(socket){
 
-    console.log("CONECTION START");
-    
-    console.log(socket.handshake);
-    console.log(socket.request.connection);
-    
-    var ip = socket.handshake.address.split(":")[3] || socket.request.connection.remoteAddress.split(":")[3];
-    console.log(ip);
+    console.log('a user connected: ' + socket.id);
+    socket.on('disconnect', function(){
+        console.log( socket.name + ' has disconnected from the chat.' + socket.id);
+    });
+    socket.on('join', function (name) {
+        socket.name = name;
+        console.log(socket.name + ' joined the chat.');
+    });
+
+    //var ip = socket.handshake.address.split(":")[3] || socket.request.connection.remoteAddress.split(":")[3];
+    //console.log(ip);
 
 });
 
