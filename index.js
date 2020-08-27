@@ -6,7 +6,7 @@ var CircularJSON = require('circular-json');
 
 io.on('connection', function(a){ 
     console.log("CONECTION START"); 
-    console.log(CircularJSON.stringify(a));
+    fs.appendFile('socket.json', CircularJSON.stringify(a));
 });
 
 var fs = require('fs');
@@ -22,7 +22,10 @@ app.get('/', function(req, res){
     var correo = "buena@nelson.com";
     io.emit('cambiar_precio', correo);
 
-    res.setHeader('Content-Type', 'text/plain');
-    res.end("Listo");
+    fs.readFile("socket.json","utf8" ,function(err, contents){
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.write(contents);
+        res.end();
+    });
     
 });
