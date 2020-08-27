@@ -2,7 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-io.on('connection', function(){ console.log("CONECTION START"); });
+io.on('connection', function(a){ console.log("CONECTION START"); console.log(a); });
 
 var fs = require('fs');
 var helpers = require('./helpers');
