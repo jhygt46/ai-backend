@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 
 var CircularJSON = require('circular-json');
 
-io.on('connection', function(a){ 
+io.on('connection', function(socket){ 
     console.log("CONECTION START");
     var address = socket.handshake.address;
     console.log(address);
